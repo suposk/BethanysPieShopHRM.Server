@@ -32,7 +32,7 @@ namespace BethanysPieShopHRM.Server
             services.AddSingleton<WeatherForecastService>();
 
             //services.AddScoped<IEmployeeDataService, EmployeeDataService>();
-
+            services.AddScoped<ITestService, TestService>();
 
             services.AddHttpClient<IEmployeeDataService, EmployeeDataService>(client =>
             {

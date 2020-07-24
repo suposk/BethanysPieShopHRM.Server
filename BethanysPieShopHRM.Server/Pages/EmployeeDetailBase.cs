@@ -13,16 +13,10 @@ namespace BethanysPieShopHRM.Server.Pages
 		[Parameter]
         public string EmployeeId { get; set; }
 
-		[Parameter]
-		public IEmployeeDataService EmployeeDataService { get; set; }
-
-		public IEnumerable<Employee> Employees { get; set; }
+		[Inject]
+		public IEmployeeDataService EmployeeDataService { get; set; }        
 
         public Employee Employee { get; set; }
-
-        private List<Country> Countries { get; set; }
-
-		private List<JobCategory> JobCategories { get; set; }
 
 		protected async override Task OnInitializedAsync()
 		{
