@@ -16,6 +16,9 @@ namespace BethanysPieShopHRM.Server
 {
     public class Startup
     {
+        //private const string UriString = "https://localhost:44340/";
+        private const string UriString = "https://localhost:5001/";
+
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
@@ -36,16 +39,16 @@ namespace BethanysPieShopHRM.Server
 
             services.AddHttpClient<IEmployeeDataService, EmployeeDataService>(client =>
             {
-                client.BaseAddress = new Uri("https://localhost:44340/");
+                client.BaseAddress = new Uri(UriString);
             });
             services.AddHttpClient<ICountryDataService, CountryDataService>(client =>
             {
-                client.BaseAddress = new Uri("https://localhost:44340/");
+                client.BaseAddress = new Uri(UriString);
             });
 
             services.AddHttpClient<IJobCategoryDataService, JobCategoryDataService>(client =>
             {
-                client.BaseAddress = new Uri("https://localhost:44340/");
+                client.BaseAddress = new Uri(UriString);
             });
         }
 

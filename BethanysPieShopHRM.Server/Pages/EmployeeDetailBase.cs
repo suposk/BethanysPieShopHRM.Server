@@ -14,9 +14,9 @@ namespace BethanysPieShopHRM.Server.Pages
         public string EmployeeId { get; set; }
 
 		[Inject]
-		public IEmployeeDataService EmployeeDataService { get; set; }        
+		public IEmployeeDataService EmployeeDataService { get; set; }
 
-        public Employee Employee { get; set; }
+		public Employee Employee { get; set; } = new Employee();
 
 		protected async override Task OnInitializedAsync()
 		{

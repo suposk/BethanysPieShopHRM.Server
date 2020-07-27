@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace BethanysPieShopHRM.Server.Pages
 {
-    public class EmployeeOverviewBase : ComponentBase
+    public class EmployeeOverviewBase : ComponentBase 
     {
 		[Inject]
         public IEmployeeDataService EmployeeDataService { get; set; }
