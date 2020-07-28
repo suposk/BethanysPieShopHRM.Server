@@ -1,4 +1,5 @@
-﻿using BethanysPieShopHRM.Server.Services;
+﻿using BethanysPieShopHRM.Server.Components;
+using BethanysPieShopHRM.Server.Services;
 using BethanysPieShopHRM.Shared;
 using Microsoft.AspNetCore.Components;
 using System;
@@ -14,16 +15,38 @@ namespace BethanysPieShopHRM.Server.Pages
         public IEmployeeDataService EmployeeDataService { get; set; }
 
 
+        public AddEmployeeDialog AddEmployeeDialog { get; set; }
+
         [Inject]
         public ITestService TestService { get; set; }
 
-        public IEnumerable<Employee> Employees { get; set; }
+        public List<Employee> Employees { get; set; }
 
-        protected async override Task OnInitializedAsync()
+        protected override Task OnInitializedAsync()
         {
             var test = TestService?.GetTime();
+            return LoadAll();
+        }
 
-            Employees = await EmployeeDataService.GetAllEmployees();
+        private async Task LoadAll()
+        {
+            Employees = (await EmployeeDataService.GetAllEmployees()).ToList();
+        }
+
+        public void QuickAddEmployee()
+        {
+            AddEmployeeDialog.Show();
+        }
+
+        public async void OnClosedDialogEvent(Employee added)
+        {
+            if (added != null && added.EmployeeId > 0)
+            {
+                Employees.Add(added);
+            }
+            else
+                await LoadAll();
+            StateHasChanged();
         }
 
     }

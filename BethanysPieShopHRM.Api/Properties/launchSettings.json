@@ -19,7 +19,7 @@
     //},
     "BethanysPieShopHRM.Api": {
       "commandName": "Project",
-      "launchBrowser": true,
+      "launchBrowser": false,
       "launchUrl": "api/country",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"

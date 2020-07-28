@@ -1,6 +1,7 @@
 ﻿using BethanysPieShopHRM.Api.Models;
 using BethanysPieShopHRM.Shared;
 using Microsoft.AspNetCore.Mvc;
+using System.Threading.Tasks;
 
 namespace BethanysPieShopHRM.Api.Controllers
 {
@@ -29,6 +30,7 @@ namespace BethanysPieShopHRM.Api.Controllers
 
         [HttpPost]
         public IActionResult CreateEmployee([FromBody] Employee employee)
+        //public async Task<ActionResult<Employee>> CreateEmployee([FromBody] Employee employee)
         {
             if (employee == null)
                 return BadRequest();
@@ -44,6 +46,9 @@ namespace BethanysPieShopHRM.Api.Controllers
             var createdEmployee = _employeeRepository.AddEmployee(employee);
 
             return Created("employee", createdEmployee);
+            //return CreatedAtRoute("GetEmployeeById",
+            //    new { id = createdEmployee.EmployeeId},
+            //    createdEmployee);
         }
 
         [HttpPut]
