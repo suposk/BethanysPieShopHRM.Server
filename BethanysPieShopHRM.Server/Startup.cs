@@ -16,8 +16,9 @@ namespace BethanysPieShopHRM.Server
 {
     public class Startup
     {
-        //private const string UriString = "https://localhost:44340/";
-        private const string UriString = "https://localhost:5001/";
+        //private const string ApiEndpoint = "https://localhost:44340/";
+        //private const string ApiEndpoint = "https://localhost:5001/";
+
 
         public Startup(IConfiguration configuration)
         {
@@ -30,6 +31,8 @@ namespace BethanysPieShopHRM.Server
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
         {
+            string ApiEndpoint = Configuration.GetValue<string>("ApiEndpoint");            
+
             services.AddRazorPages();
             services.AddServerSideBlazor();
             services.AddSingleton<WeatherForecastService>();
@@ -39,16 +42,16 @@ namespace BethanysPieShopHRM.Server
 
             services.AddHttpClient<IEmployeeDataService, EmployeeDataService>(client =>
             {
-                client.BaseAddress = new Uri(UriString);
+                client.BaseAddress = new Uri(ApiEndpoint);
             });
             services.AddHttpClient<ICountryDataService, CountryDataService>(client =>
             {
-                client.BaseAddress = new Uri(UriString);
+                client.BaseAddress = new Uri(ApiEndpoint);
             });
 
             services.AddHttpClient<IJobCategoryDataService, JobCategoryDataService>(client =>
             {
-                client.BaseAddress = new Uri(UriString);
+                client.BaseAddress = new Uri(ApiEndpoint);
             });
         }
 

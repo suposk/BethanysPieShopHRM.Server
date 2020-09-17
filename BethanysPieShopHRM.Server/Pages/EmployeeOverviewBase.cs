@@ -2,6 +2,7 @@
 using BethanysPieShopHRM.Server.Services;
 using BethanysPieShopHRM.Shared;
 using Microsoft.AspNetCore.Components;
+using Microsoft.Extensions.Configuration;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,6 +15,16 @@ namespace BethanysPieShopHRM.Server.Pages
 		[Inject]
         public IEmployeeDataService EmployeeDataService { get; set; }
 
+        [Inject]
+        public Microsoft.Extensions.Configuration.IConfiguration Configuration { get; set; }
+
+        public string ApiEndpoint
+        {
+            get
+            {
+                return this.Configuration.GetValue<string>("ApiEndpoint");
+            }
+        }
 
         public AddEmployeeDialog AddEmployeeDialog { get; set; }
 
