@@ -11,6 +11,9 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using BethanysPieShopHRM.Server.Data;
 using BethanysPieShopHRM.Server.Services;
+using Blazorise;
+using Blazorise.Bootstrap;
+using Blazorise.Icons.FontAwesome;
 
 namespace BethanysPieShopHRM.Server
 {
@@ -53,6 +56,14 @@ namespace BethanysPieShopHRM.Server
             {
                 client.BaseAddress = new Uri(ApiEndpoint);
             });
+
+            services
+              .AddBlazorise(options =>
+              {
+                  options.ChangeTextOnKeyPress = true; // optional
+              })
+              .AddBootstrapProviders()
+              .AddFontAwesomeIcons();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -73,6 +84,10 @@ namespace BethanysPieShopHRM.Server
             app.UseStaticFiles();
 
             app.UseRouting();
+
+            app.ApplicationServices
+              .UseBootstrapProviders()
+              .UseFontAwesomeIcons();
 
             app.UseEndpoints(endpoints =>
             {
