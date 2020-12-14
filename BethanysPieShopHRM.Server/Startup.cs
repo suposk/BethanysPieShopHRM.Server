@@ -11,6 +11,9 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using BethanysPieShopHRM.Server.Data;
 using BethanysPieShopHRM.Server.Services;
+using MudBlazor;
+using MudBlazor.Dialog;
+using MudBlazor.Services;
 
 namespace BethanysPieShopHRM.Server
 {
@@ -53,6 +56,10 @@ namespace BethanysPieShopHRM.Server
             {
                 client.BaseAddress = new Uri(ApiEndpoint);
             });
+
+            services.AddMudBlazorDialog();
+            services.AddMudBlazorSnackbar();
+            services.AddMudBlazorResizeListener();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
